@@ -1,6 +1,8 @@
 import {
   Box,
   Button,
+  Card,
+  CardContent,
   Grid,
   IconButton,
   InputBase,
@@ -14,8 +16,71 @@ import img2 from "../../../img/Arrow_1.png";
 import PlaceIcon from "@mui/icons-material/Place";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import { useContext, useEffect, useState } from 'react';
+import axios from 'axios'; // Import Axios for making HTTP requests
+import { UserContext } from '../Authentication/UserContext';
+// import { Box, Button, Card, CardContent, Grid, TextField, Typography } from '@mui/material';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const SecondSection = () => {
+  
+  const navigate = useNavigate();
+
+  const [professionals, setProfessionals] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
+  const { isLoggedIn } = useContext(UserContext);
+  
+  const location = useLocation();
+  useEffect(() => {
+    const fetchProfessionals = async () => {
+      if (isLoggedIn) {
+        try {
+          const token = localStorage.getItem('cookie');
+          document.cookie = 'cookie= juhi';
+          console.log('token', token);
+
+          // Check if the searchQuery is not empty before making the API call
+          if (searchQuery) {
+            const options = {
+              headers: { Authorization: `${token}` },
+            };
+
+            const response = await axios.post(
+              'https://pbd.onrender.com/api/loadprofessionallist',
+              { query: searchQuery },
+              options
+            );
+              console.log(response.data)
+            setProfessionals(response.data);
+          }
+        } catch (error) {
+          console.error('Error fetching professionals data:', error);
+        }
+      }
+    };
+
+    fetchProfessionals();
+  }, [isLoggedIn, searchQuery]);
+
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+  const handleMessageNowClick = (professionalId, professionalName) => {
+    
+  
+    // Get the current query parameters from the location object
+    const queryParams = new URLSearchParams(location.search);
+  
+    // Add the professionalName as a query parameter to the existing ones
+    queryParams.set('name', professionalName);
+  console.log("queryParams",queryParams)
+    // Convert the updated query parameters to a string
+    const queryString = queryParams.toString();
+    console.log("queryString",queryString)
+  console.log(professionalId)
+    // Use the navigate function to navigate to the MessagePage with both parameters
+    navigate(`/msg/${professionalId}?${queryString}`);
+  };
   return (
     <Box
     sx={{
@@ -36,7 +101,7 @@ const SecondSection = () => {
     >
       <Grid item  md={4}>
       </Grid>
-      {/* <Grid item xs={12} sm={6} md={4} >
+      <Grid item xs={12} sm={6} md={4} >
       <Paper
         component="form"
         sx={{
@@ -56,12 +121,48 @@ const SecondSection = () => {
         <IconButton type="button" sx={{ p: "10px" }} aria-label="search">
           <SearchIcon />
         </IconButton>
-        <InputBase sx={{ ml: 1, flex: 1 }} placeholder="Search for the professional you need" />
+        <InputBase sx={{ ml: 1, flex: 1 }}       value={searchQuery}
+        onChange={handleSearchChange} placeholder="Search for the professional you need" />
       </Paper>
-      </Grid> */}
+      </Grid>
       <Grid item  md={4} >
+
       </Grid>
     </Grid>
+    <Grid container spacing={2}>
+  {professionals.map((professional, index) => (
+    <Grid item xs={12} sm={6} md={4} key={professional.userid}>
+      <Box height="100%">
+        <Card style={{ maxWidth: 400, margin: '16px auto', height: '100%' }}>
+          <CardContent>
+            <Typography variant="h5" gutterBottom>
+              {professional.name}
+            </Typography>
+            <Typography variant="body1" color="textSecondary">
+              <span style={{ fontWeight: 'bold' }}>Service Category:</span> {professional.servicecatagory}
+            </Typography>
+            <Typography variant="body1" color="textSecondary">
+              <span style={{ fontWeight: 'bold' }}>Profile:</span> {professional.profileicon}
+            </Typography>
+            <Typography variant="body1" color="textSecondary">
+              <span style={{ fontWeight: 'bold' }}>Ratings:</span> {professional.ratings}
+            </Typography>
+
+            <Button
+              variant="contained"
+              color="primary"
+              sx={{ mt: 5 }}
+              onClick={() => handleMessageNowClick(professional.userid, professional.name)}
+            >
+              Message Now
+            </Button>
+          </CardContent>
+        </Card>
+      </Box>
+    </Grid>
+  ))}
+</Grid>
+
     {/* 2nd section  */}
     <Grid
       container
