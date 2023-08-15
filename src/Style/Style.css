@@ -1,0 +1,242 @@
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.text {
+  color: #333;
+  font-size: 16px;
+  font-family: "SF UI Display";
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+  letter-spacing: 4px;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.secondText {
+  color: #000;
+  font-size: 16px;
+  font-family: "SF UI Display";
+  font-style: normal;
+  font-weight: 300;
+  line-height: 16px;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.iconContainer {
+  padding: 8px 48px;
+  gap: 6.275px;
+  border-radius: 16px;
+  background: #333;
+}
+
+.icon {
+  width: 23.843px;
+  height: 23.843px;
+  color: rgb(255, 255, 255);
+}
+
+/* professional text style  */
+.pbg {
+  background-image: url("../img/Circle_8.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+/* panoroma */
+.cardholder {
+  perspective: 1200px;
+  transform-style: preserve-3d;
+  /* transform:translateX(512px) translateZ(591px); */
+
+}
+.curved1 {
+  transform: rotateY(
+    18deg
+  ); /* Adjust the translateZ value to control the depth */
+}
+
+.curved2 {
+  transform: rotateY(10deg);
+}
+.curved3 {
+  transform: rotateY(-8deg);
+}
+.curved4 {
+  transform: rotateY(-15deg);
+}
+
+
+
+.cardholder {
+  margin-top: 150px;
+          perspective: 600px;
+}
+.card1{
+  width: 300px;
+  height: 300px;
+          transform: rotateY(20deg);
+  box-shadow: -6px 5px 13px 2px rgba(0, 0, 0, 0.25);
+	
+}
+.card2 {
+    width: 300px;
+    height: 300px;
+            transform: rotateY(10deg);
+    box-shadow: -6px 5px 13px 2px rgba(0, 0, 0, 0.25);
+
+  }
+  .card3 {
+    width: 300px;
+    height: 300px;
+            transform: rotateX(0deg);
+    box-shadow: -6px 5px 13px 2px rgba(0, 0, 0, 0.25);
+      
+  }
+  .card4 {
+    width: 300px;
+    height: 300px;
+            transform: rotateY(-20deg);
+    box-shadow: -6px 5px 13px 2px rgba(0, 0, 0, 0.25);
+      
+  }
+ 
+  .gallery-mini-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-top: 3rem;
+    text-align: center;
+  }
+  .gallery-mini-title::after {
+    content: '';
+    display: block;
+    width: 3px;
+    height: 25px;
+    background-color: #f8bf02;
+    /* margin: 0 auto; */
+    margin-left: 42rem;
+    margin-top: -1.3rem;
+    /* margin-bottom: 1rem; */
+  }
+  .gallery-title {
+    font-size: 3rem;
+    font-weight: 600;
+    text-align: center;
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+  }
+  .gallery-swiper {
+    width: 100%;
+    height: 85vh;
+    max-width: 1100px;
+    margin: 0 auto;
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+  }
+  .gallery-slide-1,
+  .gallery-slide-2,
+  .gallery-slide-3,
+  .gallery-slide-4,
+  .gallery-slide-5,
+  .gallery-slide-6,
+  .gallery-slide-7,
+  .gallery-slide-8,
+  .gallery-slide-9 {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 130%;
+    height: 100vh;
+    -webkit-background-size: cover;
+    background-size: cover;
+    background-position: center;
+    /* background-image: url(../../../img/african-leopard-female-pose-beautiful-evening-light.jpg); */
+  }
+  .gallery-slide-1 {
+    background-image: linear-gradient(
+        to top,
+        rgba(4, 9, 30, 20),
+        rgba(4, 9, 30, 0.3)
+      ),
+      url(../img/Rectangle\ 3.png);
+  }
+  .gallery-slide-2 {
+    background-image: linear-gradient(
+        to top,
+        rgba(4, 9, 30, 20),
+        rgba(4, 9, 30, 0.3)
+      ),
+      url(../img/Rectangle\ 4.png);
+  }
+  .gallery-slide-3 {
+    background-image: linear-gradient(
+        to top,
+        rgba(4, 9, 30, 20),
+        rgba(4, 9, 30, 0.3)
+      ),
+      url(../img/Rectangle\ 5.png);
+  }
+  .gallery-slide-4 {
+    background-image: linear-gradient(
+        to top,
+        rgba(4, 9, 30, 20),
+        rgba(4, 9, 30, 0.3)
+      ),
+      url(../img/Rectangle\ 6.png);
+  }
+  
+  
+  .gallery-slide-text {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    padding: 30px;
+    width: 100%;
+    height: 100%;
+    font-size: 1.5rem;
+  }
+  
+  .swiper-slide:hover .gallery-slide-text {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  .swiper-slide:hover .gallery-slide-price {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  
+  @media screen  and (max-width: 768px){
+    .gallery-title {
+      font-size: 2rem;
+    }
+    .gallery-mini-title::after {
+      content: '';
+  
+      margin-left: 8rem;
+    }
+    .gallery-slide-text {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+    .gallery-slide-price {
+      display: block;
+      width: 100%;
+      height: 100%;
+      font-size: 1rem;
+    }
+  }
+  
+  
