@@ -8,7 +8,7 @@ import { Link, } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <Box className="footer" sx={{mb:5}}>
+    <Box className="footer" sx={{mb:5}} id="footer">
           <p className="secondText">A Product by SheBa Web Technology LLC</p>
       <p className="text">© ProfessionalBD 2019-2023 All rights reserved</p>
       <Link to ="terms">
@@ -16,9 +16,17 @@ const Footer = () => {
 
       </Link>
       <div className="iconContainer">
-      <InstagramIcon className="icon" sx={{marginRight:"96px"}}/>
-        <FacebookIcon className="icon" sx={{marginRight:"96px"}}/>
+      <div>
+      <a href="https://www.instagram.com">
+        <InstagramIcon className="icon" sx={{ marginRight: "96px" }} />
+      </a>
+      <a href="https://www.facebook.com/people/Professionalbd/100094322900633/?mibextid=ZbWKwL"  target="_blank">
+        <FacebookIcon className="icon" sx={{ marginRight: "96px" }} />
+      </a>
+      <a href="https://www.twitter.com">
         <TwitterIcon className="icon" />
+      </a>
+    </div>
       </div>
     </Box>
   );
